@@ -1,6 +1,6 @@
 {
   "name": "femur",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Wrap a function with a timer",
   "main": "index.js",
   "scripts": {
