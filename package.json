@@ -1,0 +1,28 @@
+{
+  "name": "femur",
+  "version": "0.0.0",
+  "description": "Wrap a function with a timer",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mixmaxhq/femur.git"
+  },
+  "keywords": [
+    "function",
+    "timing",
+    "wrapper",
+    "metrics"
+  ],
+  "author": "Trey Tacon <trey@mixmax.com> (https://mixmax.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mixmaxhq/femur/issues"
+  },
+  "homepage": "https://github.com/mixmaxhq/femur#readme",
+  "devDependencies": {
+    "jasmine": "^2.5.2"
+  }
+}
