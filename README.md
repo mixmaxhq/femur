@@ -5,6 +5,11 @@ pass the function execution duration. As such, make sure your duration
 callback is asynchronous.
 
 ## Install
+
+```
+$ yarn add femur
+```
+or
 ```
 $ npm install femur --save
 ```
