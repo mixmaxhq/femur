@@ -4,7 +4,8 @@
   "description": "Wrap a function with a timer",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,12 @@
   },
   "homepage": "https://github.com/mixmaxhq/femur#readme",
   "devDependencies": {
-    "jasmine": "^2.5.2"
-  }
+    "eslint": ">=3",
+    "eslint-config-mixmax": "^0.6.0",
+    "jasmine": "^2.5.2",
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "lint"
+  ]
 }

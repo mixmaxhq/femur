@@ -74,7 +74,7 @@ class Timer {
 
     assert(mutators, 'Must provide a valid resolution (s, ms, or ns)');
     let divider = mutators.divider,
-        multiplier = mutators.multiplier;
+      multiplier = mutators.multiplier;
 
     return (diff[0] * multiplier) + Math.floor(diff[1]/divider);
   }
