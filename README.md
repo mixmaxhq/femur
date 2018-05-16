@@ -7,7 +7,7 @@ callback is asynchronous.
 ## Install
 
 ```
-$ yarn add femur
+$ npm install femur
 ```
 or
 ```
