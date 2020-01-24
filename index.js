@@ -31,9 +31,9 @@ const assert = require('assert');
  * [seconds, nanoseconds] data into a duration with the desired unit.
  */
 const TIME_UNITS = {
-  's': { multiplier: 1, divider: 1000000000 },
-  'ms': { multiplier: 1000, divider: 1000000 },
-  'ns': { multiplier:1000000000, divider: 1 }
+  s: { multiplier: 1, divider: 1000000000 },
+  ms: { multiplier: 1000, divider: 1000000 },
+  ns: { multiplier: 1000000000, divider: 1 },
 };
 
 /**
@@ -67,16 +67,16 @@ class Timer {
    */
   duration(resolution) {
     assert(this._start, 'Cannot call duration without having called start()');
-    let diff = process.hrtime(this._start);
+    const diff = process.hrtime(this._start);
 
     resolution = resolution || 'ms';
-    let mutators = TIME_UNITS[resolution];
+    const mutators = TIME_UNITS[resolution];
 
     assert(mutators, 'Must provide a valid resolution (s, ms, or ns)');
-    let divider = mutators.divider,
+    const divider = mutators.divider,
       multiplier = mutators.multiplier;
 
-    return (diff[0] * multiplier) + Math.floor(diff[1]/divider);
+    return diff[0] * multiplier + Math.floor(diff[1] / divider);
   }
 }
 
@@ -103,7 +103,6 @@ function wrap(func, durationCb, context) {
   return sample(1.0, func, durationCb, context);
 }
 
-
 /**
  * sample wraps a function to call the durationCb with the duration it took to
  * execute the given function. It can optionally be provided with a given
@@ -116,10 +115,10 @@ function wrap(func, durationCb, context) {
  * @return {Function}            The timer wrapped function.
  */
 function sample(rate, func, durationCb, context) {
-  var	slice = Array.prototype.slice;
+  var slice = Array.prototype.slice;
 
   var timedFunc = function() {
-    let args = slice.call(arguments); // Convert arguments to a real array
+    const args = slice.call(arguments); // Convert arguments to a real array
     if (Math.random() >= rate) {
       // Don't sample it.
       return func.apply(context, args);
@@ -130,17 +129,17 @@ function sample(rate, func, durationCb, context) {
 
     if (args && args.length) {
       // There could be a callback that was provided.
-      let cb = args.pop();
+      const cb = args.pop();
       isAsync = isFunction(cb);
       args.push(cb); //  Push it back on to pop later.
     }
 
-    let tmr = new Timer();
+    const tmr = new Timer();
     if (isAsync) {
       // If it was async we need to wrap the callback.
-      let cb = args.pop();
-      let timedCb = function() {
-        let duration = tmr.duration();
+      const cb = args.pop();
+      const timedCb = function() {
+        const duration = tmr.duration();
         durationCb(duration);
         cb.apply(context, arguments);
       };
@@ -151,8 +150,8 @@ function sample(rate, func, durationCb, context) {
     }
 
     tmr.start();
-    let result = func.apply(context, args);
-    let duration = tmr.duration();
+    const result = func.apply(context, args);
+    const duration = tmr.duration();
     durationCb(duration);
     return result;
   };
@@ -161,5 +160,5 @@ function sample(rate, func, durationCb, context) {
 
 module.exports = {
   wrap,
-  sample
+  sample,
 };
